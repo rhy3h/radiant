@@ -13,7 +13,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["./src"],
+      "@/*": ["src/*"],
+      "@/react/*": ["src/react/*"],
+      "@/electron/*": ["src/electron/*"],
     }
   },
   "include": ["src/**/*"]
