@@ -2,13 +2,22 @@ import { app, BrowserWindow } from "electron";
 
 import { MainWindow } from "@/electron/window/MainWindow";
 
+import { RiotApi } from "@/modules/RiotApi";
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-const createWindow = (): void => {
-  const mainWindow = new MainWindow();
+const createWindow = async (): Promise<void> => {
+  try {
+    const riotApi = new RiotApi();
+    await riotApi.loginRiot();
+
+    const mainWindow = new MainWindow();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // This method will be called when Electron has finished
